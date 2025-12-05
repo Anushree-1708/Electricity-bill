@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class ElectricityBillCalculator {
+
+    public static double calculateBill(int units) {
+        double amount;
+
+        if (units <= 100) {
+            amount = units * 5;
+        } else if (units <= 300) {
+            amount = (100 * 5) + (units - 100) * 7;
+        } else {
+            amount = (100 * 5) + (200 * 7) + (units - 300) * 10;
+        }
+        return amount;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        BillDAO dao = new BillDAO();
+
+        System.out.println("=== ELECTRICITY BILL CALCULATOR ===");
+
+        System.out.print("Enter Consumer Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Units Consumed: ");
+        int units = sc.nextInt();
+
+        double amount = calculateBill(units);
+
+        System.out.println("\n--- BILL DETAILS ---");
+        System.out.println("Consumer: " + name);
+        System.out.println("Units: " + units);
+        System.out.println("Total Amount: ₹" + amount);
+
+        dao.saveBill(name, units, amount);
+    }
+}
