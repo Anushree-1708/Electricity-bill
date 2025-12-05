@@ -1,0 +1,9 @@
+CREATE DATABASE electricitydb;
+USE electricitydb;
+
+CREATE TABLE bills (
+    bill_id INT PRIMARY KEY AUTO_INCREMENT,
+    consumer_name VARCHAR(50),
+    units INT,
+    amount DOUBLE
+);
